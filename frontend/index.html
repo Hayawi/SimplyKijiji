@@ -3,13 +3,13 @@
 
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
-  <script src="app/app.js"></script>
-  <script src="./hello/helloController.js"></script>
+  <script src="public/app.js"></script>
+  <script src="public/controllers/myController.js"></script>
 </head>
 
 <body ng-app="myapp">
-  <div ng-controller="HelloController">
-    <h2>{{helloTo.title}}</h2>
+  <div ng-controller="myCtrl">
+    {{firstName + " " + lastName}}
   </div>
 </body>
 
