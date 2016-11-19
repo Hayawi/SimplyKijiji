@@ -3,10 +3,20 @@ var router = express.Router();
 var multer = require('multer');
 var ExifImage = require('exif').ExifImage;
 
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, __dirname + '../public/uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '.png') //Appending .png
+  }
+});
+
 var upload = multer({
   dest: __dirname + '../public/uploads/',
   limits: {fileSize: 2000000, files:1},
-})
+  storage: storage
+});
 
 router.get('/', function(req, res, next) {
   res.send('._.');
@@ -17,8 +27,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/image/upload', upload.any(), function (req, res, next) {
-  // req.files is array of `photos` files
-  // req.body will contain the text fields, if there were any
+  res.send("COOL");
 })
 
 function getLocationFromEXIFData(image, callback) {
