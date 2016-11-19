@@ -5,7 +5,8 @@ var ExifImage = require('exif').ExifImage;
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, __dirname + '../public/uploads/')
+    console.log("dir name is: ", __dirname);
+    cb(null, __dirname + '/../public/uploads/')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '.png') //Appending .png
