@@ -6,19 +6,23 @@
   <!-- angular stuff -->
   <script src="public/app.js"></script>
   <script src="public/controllers/myController.js"></script>
+  <link rel="stylesheet" href="public/css/styles.css" 
 
   <!-- bootstrap css-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
 <body ng-app="myapp">
-  <div ng-controller="myCtrl">
+  <div class ="jumbotron" ng-controller="myCtrl">
     {{firstName + " " + lastName}}
-
-    <button ng-click="buyItem()"> Buy </button>
-    <button ng-click="sellItem()"> Sell </button>
-
+	
+	<div class="container">
+	<button type="button" ng-click="buyItem()" class="button-main btn btn-lg btn-primary active">Buy</button>
+	<button type="button" ng-click="sellItem()" class="btn btn-lg btn-primary active">Sell</button>
+	</div>
   </div>
 </body>
 
