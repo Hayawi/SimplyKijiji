@@ -18,7 +18,7 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({
-  dest: __dirname + '../public/uploads/',
+  dest: __dirname + '/../public/uploads/',
   limits: {fileSize: 2000000, files:1},
   storage: storage
 });
