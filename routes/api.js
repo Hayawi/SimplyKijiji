@@ -39,12 +39,13 @@ router.post('/image/upload', upload.any(), function (req, res, next) {
         }
         vision.detectLabels(UPLOAD_DIR + filename, function(err, labels, apiResponse) {
           if (err) console.log(err);
+          var price_range = pricing.keysToPrices(labels);
           var response = {
             title: 'TITLE',
             filepath: "/uploads/" + filename,
             description: 'Description',
             catagories : labels,
-            price_range: [200, 400],
+            price_range,
             location,
           }
           console.log(response);
@@ -54,13 +55,8 @@ router.post('/image/upload', upload.any(), function (req, res, next) {
 });
 
 router.get('/file', function(req, res, next) {
-  pricing.getDummyData(function (err, data) {
-      if(err) console.log(err);
-      else {
-        console.log(data)
-        res.send(data);
-      }
-    });
+  var r = pricing.keysToPrices(["toyota", "car"]);
+  res.send(r);
 });
 
 module.exports = router;

@@ -13,8 +13,7 @@ function fuzzysearch(keys) {
     maxPatternLength: 52,
     keys: [
       "title",
-      "category",
-      "description"
+      "category"
   ] 
   };
   var fuzzy = new Fuse(largeJson["transactions"], options);
@@ -31,11 +30,12 @@ function fuzzysearch(keys) {
 
 function getPriceArray(trxnArray) {   //takes an array of posting
   //var transations = trxnJson["transactions"];
-  var prices = [];
+  var prices = new Array;
   var arrayLen = trxnArray.length;
+  console.log(trxnArray);
   for (var i = 0; i < arrayLen; i++) {
     var price = trxnArray[i]["price"];
-    prices[i] = price;
+    prices.push(price);
   }
   return prices;  //returns array of doubles representing price
 }
@@ -43,16 +43,20 @@ function getPriceArray(trxnArray) {   //takes an array of posting
 function getPriceRange(priceArray) {
   var mean = math.mean(priceArray);
   var std = math.std(priceArray);
-  var priceRange = [mean - std, mean + std];
+  var lower = mean - 0.5 * std;
+  if(lower <= 0) {
+    lower = math.min(priceArray);
+  }
+  var upper = mean + 0.5 * std;
+  var priceRange = [Math.round(lower * 100)/100, Math.round(upper * 100)/100];
   return priceRange;
 }
 
-function keysToPrices(keys) {
+module.exports.keysToPrices = function(keys) {
   var matches = fuzzysearch(keys);
-  //console.log(matches);
   var priceArr = getPriceArray(matches);
-  return getPriceRange(priceArr);
+  var result = getPriceRange(priceArr);
+  return result;
+  //callback(null, result);
 }
-
-console.log(keysToPrices(["toyota"]));
 
