@@ -6,6 +6,7 @@ var helper = require('./functions');
 var gcloud = require('gcloud');
 var path = require("path");
 var pricing = require('../pricing/pricing');
+var title_func = require('./title');
 
 var vision = gcloud.vision({
   projectId: 'simplykijiji-150019',
@@ -27,34 +28,36 @@ var storage = multer.diskStorage({
 
 var upload = multer({
   dest: UPLOAD_DIR,
-  limits: { fileSize: 3000000, files:1 },
+  limits: { fileSize: 3000000, files: 1 },
   storage: storage
 });
 
 router.post('/image/upload', upload.any(), function (req, res, next) {
-      helper.getLocationFromEXIFData(filename, function(err, location) {
-        if (err) {
-          console.log(err);
-          location = null;
+  helper.getLocationFromEXIFData(filename, function (err, location) {
+    if (err) {
+      console.log(err);
+      location = null;
+    }
+    vision.detectLabels(UPLOAD_DIR + filename, function (err, labels, apiResponse) {
+      if (err) console.log(err);
+      var price_range = pricing.keysToPrices(labels);
+      title_func.titleAndDescriptionItem(labels, function (err, result) {
+        var response = {
+          title : result.title,
+          filepath: "/uploads/" + filename,
+          description: result.description,
+          catagories: labels,
+          price_range,
+          location,
         }
-        vision.detectLabels(UPLOAD_DIR + filename, function(err, labels, apiResponse) {
-          if (err) console.log(err);
-          var price_range = pricing.keysToPrices(labels);
-          var response = {
-            title: 'TITLE',
-            filepath: "/uploads/" + filename,
-            description: 'Description',
-            catagories : labels,
-            price_range,
-            location,
-          }
-          console.log(response);
-          res.send(response);
-        });
+        console.log(response);
+        res.send(response);
+      });
+    });
   });
 });
 
-router.get('/file', function(req, res, next) {
+router.get('/file', function (req, res, next) {
   var r = pricing.keysToPrices(["toyota", "car"]);
   res.send(r);
 });

@@ -2,6 +2,7 @@ app.controller('VerifyController', function($scope, $http, $rootScope, DataServi
   // $scope.data = DataService.get_plan();
 	$scope.locationResults;
 	$scope.initializeChips = function(){
+		$('#description').val($rootScope.advertisementData.description);
 		$('.chips-initial').material_chip({
 		    data: $rootScope.authData,
 		});

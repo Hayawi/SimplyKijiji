@@ -31,7 +31,6 @@ function getPriceArray(trxnArray) {   //takes an array of posting
   //var transations = trxnJson["transactions"];
   var prices = new Array;
   var arrayLen = trxnArray.length;
-  console.log(trxnArray);
   for (var i = 0; i < arrayLen; i++) {
     var price = trxnArray[i]["price"];
     prices.push(price);
