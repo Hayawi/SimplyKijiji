@@ -3,9 +3,9 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     templateUrl: '/app/buysell/buysell.html',
     controller: 'BuySellController'
     })
-    .when('/form', {
-      templateUrl: '/app/form/form.html',
-      controller: 'FormController'
+    .when('/photoupload', {
+      templateUrl: '/app/photoupload/photoupload.html',
+      controller: 'PhotoUploadController'
     })
     .when('/verify', {
       templateUrl: '/app/verify/verify.html',

@@ -1,4 +1,4 @@
-app.controller('FormController', function($scope, $location, DataService, $http) {
+app.controller('PhotoUploadController', function($scope, $location, DataService, $http) {
   // $scope.data = DataService.get_loan_amount();
 
   $scope.go = function (path, value) {
