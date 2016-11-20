@@ -10,10 +10,11 @@
 		<textarea id="description" class="">{{advertisementData.description}}</textarea>
       </div>
 	  <div>Categories:
+		<div class="chips chips-placeholder"></div>
 		<span style="display:inline" ng-repeat="categories in advertisementData.catagories">
 			  <div class="chip">
 				{{categories}}
-				<i class="close material-icons">close</i>
+					<i class="close material-icons">close</i>
 			  </div>
 		</span>
 	  </div>
@@ -34,3 +35,6 @@
 </div>
 <br>
 </div>
+<script>
+  $('.chips').material_chip();
+</script>
