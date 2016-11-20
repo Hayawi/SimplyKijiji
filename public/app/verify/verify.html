@@ -1,4 +1,4 @@
-<div class="container center-align verify-sec-1">
+<div class="container center-align verify-sec-1" data-ng-init="initializeChips()">
   <div class="row">
     <div class="container left-align">
       <div>
@@ -28,14 +28,3 @@
   <br>
 </div>
 <br>
-<script>
-  $('.chips-initial').material_chip({
-    data: [{
-      tag: 'Apple',
-    }, {
-      tag: 'Microsoft',
-    }, {
-      tag: 'Google',
-    }],
-  });
-</script>
