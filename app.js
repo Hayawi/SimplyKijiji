@@ -65,9 +65,9 @@ app.use('/api', api);
 //   });
 // });
 
-// app.get('*', function(req, res){
-//     res.send('Nothing to see here, move along.');
-// });
+app.get('*', function(req, res){
+    res.send('Nothing to see here, move along.');
+});
 
 
 module.exports = app;
