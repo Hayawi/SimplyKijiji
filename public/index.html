@@ -1,34 +1,35 @@
-<!doctype html>
 <html>
 
 <head>
-  <!-- angular stuff -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="app/app.js"></script>
-  <script src="routes/router.js"></script>
-  <script src="controllers/myController.js"></script>
-  <link rel="stylesheet" href="stylesheets/style.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static/styles.css">
+  <title>Kijiji</title>
 </head>
 
-<body ng-app="myapp">
-  <div ng-controller="myCtrl">
-    <div class="main-content">
-	<button class="large-button btn btn-primary btn-lg">Buy</button>
-	<button class="large-button btn btn-primary btn-lg">Sell</button>
-      <div ng-view></div>
-      <p>{{data}}</p>
-      <form class="upload-image-form" ng-submit="formSubmit">
-        <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" />
-		<br/>
-        <button ng-click="submitImage()">Add</button>
-        <button><a href="#home">Go home</a></button>
-      </form>
-    </div>
-  </div>
+<body ng-app="Kijiji">
+  <navbar></navbar>
+  <main ng-view></main>
+  <kijfooter></kijfooter>
+
+
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script src="/node_modules/angular/angular.min.js"></script>
+  <script src="/node_modules/angular-route/angular-route.js"></script>
+
+  <script src="/app/app.js"></script>
+  <script src="/app/router.js"></script>
+  <script src="/app/directives/navbar.js"></script>
+  <script src="/app/directives/angular-file-model.js"></script>
+  <script src="/app/directives/footer.js"></script>
+  <script src="/app/directives/footerController.js"></script>
+  <script src="/app/directives/loader.js"></script>
+  <script src="/app/shared/dataService.js"></script>
+  <script src="/app/buysell/buysellController.js"></script>
+  <script src="/app/form/formController.js"></script>
+  <script src="/app/verify/verifyController.js"></script>
+  <script src="/app/buysell/twilioservice.js"></script>
 </body>
 
 </html>

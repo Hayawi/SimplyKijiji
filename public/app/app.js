@@ -1,1 +1,1 @@
-var app = angular.module("myapp", ["ngRoute"]);
+var app = angular.module('Kijiji', ['ngRoute', 'file-model']);

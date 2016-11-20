@@ -1,0 +1,78 @@
+<style>
+  #page_main {
+    padding-top: 15px;
+  }
+
+  .text-sec-2 {
+    padding-top: 20px;
+  }
+
+  .option-button {
+    width: 500px;
+    height: 130px;
+    vertical-align: middle;
+    font-size: 20px;
+    background-color: #2C2F6B;
+  }
+
+  .option-button:hover {
+    background-color: #2C2F6B !important;
+  }
+
+  .option-button:focus {
+    background-color: #2C2F6B !important;
+  }
+
+  .row-1 {
+    margin-bottom: 3px;
+  }
+
+  input:focus {
+    border-bottom: 1px solid #2C2F6B !important;
+    -webkit-box-shadow: 0 1px 0 0 #2C2F6B !important;
+    -moz-box-shadow: 0 1px 0 0 #2C2F6B !important;
+    box-shadow: 0 1px 0 0 #2C2F6B !important;
+  }
+
+  #input_amount:focus+label {
+    color: #2C2F6B;
+    width: 95%;
+  }
+</style>
+<div id="page_loader">
+  <loader></loader>
+</div>
+<div style="display: none;" id="page_main">
+  <div class="center-align text-sec-1">
+    <h4>
+      What sort of ad do you have?
+    </h4>
+  </div>
+  <div class="center-align text-sec-2">
+    <div class="row row-1">
+      <button ng-click="go('/form', price[0])" class="waves-effect waves-light btn option-button">Buy</button>
+    </div>
+    <div class="row">
+      <button ng-click="go('/form', price[2])" class="waves-effect waves-light btn-large option-button">Sell</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  var loadingText = function() {
+    var html = $(' <h4 class="center-align">Loading the application</h4>\
+        <div class="progress white">\
+            <div class="indeterminate kijiji-purple"></div>\
+        </div>')
+    $("#loader-content").empty();
+    $("#loader-content").append(html);
+    setTimeout(fade, 3000);
+  }
+
+  var fade = function() {
+    $("#page_loader").fadeOut();
+    $("#page_main").fadeIn();
+  }
+  setTimeout(loadingText, 1000);
+</script>

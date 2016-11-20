@@ -1,0 +1,11 @@
+{
+  "name": "decode-hackathon",
+  "version": "0.0.1",
+  "author": "Fahad Ahmad",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "jquery": "^3.1.0",
+    "materialize-css": "^0.97.7"
+  }
+}

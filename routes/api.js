@@ -31,10 +31,6 @@ var upload = multer({
   storage: storage
 });
 
-router.get('/', function(req, res, next) {
-  res.send('index.html');
-});
-
 router.post('/image/upload', upload.any(), function (req, res, next) {
       helper.getLocationFromEXIFData(filename, function(err, location) {
         if(err) {
@@ -58,4 +54,3 @@ router.post('/image/upload', upload.any(), function (req, res, next) {
 });
 
 module.exports = router;
- 
