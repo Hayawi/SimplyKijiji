@@ -15,6 +15,7 @@ dotenv.load({ path: 'env_vars' });
 
 var routes = require('./routes/index');
 var api = require('./routes/api');
+var form = require('./routes/form');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/form', form);
 app.use('/api', api);
 
 // catch 404 and forward to error handler
