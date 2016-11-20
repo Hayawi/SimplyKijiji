@@ -7,6 +7,17 @@ a {
   color: #00B7FF;
 }
 
-.button-main {
-  width: 500px;
+.upload-image-form{
+	display: inline-block;
+}
+
+.main-content{
+	width: 100%;
+	text-align: center;
+}
+
+.large-button {
+  display: block;
+  width: 300px;
+  margin:0 auto;
 }

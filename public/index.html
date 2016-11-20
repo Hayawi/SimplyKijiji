@@ -15,13 +15,16 @@
 </head>
 
 <body ng-app="myapp">
-  <div class="jumbotron" ng-controller="myCtrl">
-    <div class="container">
+  <div ng-controller="myCtrl">
+    <div class="main-content">
+	<button class="large-button btn btn-primary btn-lg">Buy</button>
+	<button class="large-button btn btn-primary btn-lg">Sell</button>
       <div ng-view></div>
       <p>{{data}}</p>
-      <form ng-submit="formSubmit">
+      <form class="upload-image-form" ng-submit="formSubmit">
         <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" />
-        <button ng-click="add()">Add</button>
+		<br/>
+        <button ng-click="submitImage()">Add</button>
         <button><a href="#home">Go home</a></button>
       </form>
     </div>

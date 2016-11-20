@@ -41,7 +41,6 @@ router.post('/image/upload', upload.any(), function (req, res, next) {
           console.log(err);
           location = null;
         }
-        console.log('filename  -->' + d + filename);
         vision.detectLabels(d + filename, function(err, labels, apiResponse) {
           if (err) console.log(err);
           var response = {
