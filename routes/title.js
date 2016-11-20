@@ -86,17 +86,24 @@ var kijijiPostings = [
 
 
 function titleAndDescriptionItem(labels, callback){
-		var searchTitles = new Fuse(kijijiPostings, { keys: ['title', 'description']});
 		var options = {
-				shouldSort: true,
-				Tokenize: true,
-				maxPatternLength: 32,
-				keys: ['title', 'description']
-		};
+								 shouldSort: true,
+								 threshold: 0.3,
+								 location: 0,
+								 distance: 100,
+								 maxPatternLength: 32,
+								 keys: [
+								   "title",
+								   "description"
+								]
+								};
+		var searchTitles = new Fuse(kijijiPostings, options);
 		var category = [];
 		for (var i = 0; i < labels.length; i++){
 			category =  category.concat(searchTitles.search(labels[i]));
 		}
+		             
+		console.log(category);
 		
 		for (var i = 0; i < category.length; i++)
 			var inputTitle = inputTitle + '. ' + category[i].title;
@@ -119,4 +126,4 @@ function titleAndDescriptionItem(labels, callback){
            });
 	}
 
-titleAndDescriptionItem(['Toyota', 'Austin'], console.log);
+titleAndDescriptionItem(['car', 'volkswagen'], console.log);
