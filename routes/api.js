@@ -46,7 +46,6 @@ router.post('/image/upload', upload.any(), function (req, res, next) {
             price_range: [200, 400],
             location,
           }
-          console.log(location);
           console.log(response);
           res.send(response);
         });
