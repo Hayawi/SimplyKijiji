@@ -7,6 +7,7 @@ app.controller('SubmittedPostController', function($scope, $http, $location, $ro
   }
 
 	$scope.initializeChips = function(){
+		$('#description').val($rootScope.advertisementData.description);
 		$('.chips-initial').material_chip({
 		    data: $rootScope.authData,
 		});

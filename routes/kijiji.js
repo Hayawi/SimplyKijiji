@@ -21,7 +21,10 @@ router.post('/', function(req, res, next) {
   var title = req.body.title;
   var description = req.body.description;
   var price = req.body.price;
-
+  console.log(title);
+  console.log(description);
+  console.log(price);
+  
   execKijiji(title, description, price);
 });
 
