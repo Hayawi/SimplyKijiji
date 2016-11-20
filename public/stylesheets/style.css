@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+
+.button-main {
+  width: 500px;
+}

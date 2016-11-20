@@ -2,13 +2,14 @@
 <html>
 
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
   <!-- angular stuff -->
-  <script src="public/app.js"></script>
-  <script src="public/controllers/myController.js"></script>
-  <link rel="stylesheet" href="public/css/styles.css" <!-- bootstrap css-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+  <script src="app/app.js"></script>
+  <script src="routes/router.js"></script>
+  <script src="controllers/myController.js"></script>
+  <link rel="stylesheet" href="stylesheets/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
@@ -16,11 +17,12 @@
 <body ng-app="myapp">
   <div class="jumbotron" ng-controller="myCtrl">
     <div class="container">
-      <!-- <button type="button" ng-click="buyItem()" class="button-main btn btn-lg btn-primary active">Buy</button>
-      <button type="button" ng-click="sellItem()" class="btn btn-lg btn-primary active">Sell</button> -->
-      <form action="http://localhost:3000/api/image/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name='myImage' />
-        <input type="submit" name="submit" value="submit" />
+      <div ng-view></div>
+      <p>{{data}}</p>
+      <form ng-submit="formSubmit">
+        <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" />
+        <button ng-click="add()">Add</button>
+        <button><a href="#home">Go home</a></button>
       </form>
     </div>
   </div>
