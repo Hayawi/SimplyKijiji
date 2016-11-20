@@ -41,6 +41,7 @@ router.post('/image/upload', upload.any(), function (req, res, next) {
           if (err) console.log(err);
           var response = {
             title: 'TITLE',
+            filepath: UPLOAD_DIR + filename,
             description: 'DDEESSCCRRIIPPTTIOONNN',
             catagories : labels,
             price_range: [200, 400],
@@ -58,7 +59,7 @@ router.get('/file', function(req, res, next) {
       else {
         console.log(data)
         res.send(data);
-      } 
+      }
     });
 });
 
