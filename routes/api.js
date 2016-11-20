@@ -46,11 +46,12 @@ router.post('/image/upload', upload.any(), function(req, res, next) {
                 if (err) console.log(err);
                 categorize_func.categorizeItem(labels, function(err, labelscat) {
                     if (err) console.log(err);
+                    var catagories = labelscat.concat(labels);
                     var response = {
                         title: result.title,
                         filepath: "/uploads/" + filename,
                         description: result.description,
-                        catagories: labelscat,
+                        catagories,
                         price_range,
                         location,
                     }
