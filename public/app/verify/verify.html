@@ -1,4 +1,4 @@
-<div class="container center-align verify-sec-1">
+<div class="container center-align verify-sec-1" data-ng-init="initializeChips()">
   <div class="row">
     <div class="container left-align">
       <div>
@@ -10,13 +10,7 @@
 		<textarea id="description" class="">{{advertisementData.description}}</textarea>
       </div>
 	  <div>Categories:
-		<div class="chips chips-placeholder"></div>
-		<span style="display:inline" ng-repeat="categories in advertisementData.catagories">
-			  <div class="chip">
-				{{categories}}
-					<i class="close material-icons">close</i>
-			  </div>
-		</span>
+		<div class="chips chips-initial"></div>
 	  </div>
 	  <div>Location: {{advertisementData.location}}</div>
 	  <div>Price Range:
@@ -34,7 +28,3 @@
   <br>
 </div>
 <br>
-</div>
-<script>
-  $('.chips').material_chip();
-</script>

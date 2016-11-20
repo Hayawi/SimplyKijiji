@@ -25,6 +25,15 @@ app.controller('PhotoUploadController', function($rootScope, $scope, $location, 
     ImageRequest.send($scope.formData)
     .success(function(result){
 	  $rootScope.advertisementData = result;
+	  
+	  $rootScope.authData = [];
+	  console.log(result.catagories);
+	  for(var i=0; i < result.catagories.length; i++){
+		  console.log(result.catagories[i]);
+		       var tag = {};
+		   tag["tag"] = result.catagories[i]	;
+		   $rootScope.authData.push(tag);
+	  }	  
       console.log('File sent');
       console.log(result);
     })
