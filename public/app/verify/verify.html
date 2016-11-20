@@ -1,80 +1,22 @@
-<!--
-data.
-interest_amount
-interest_rate
-length
-monthly_rate
-total
--->
-<style>
-  input:focus {
-    border-bottom: 1px solid #005daa !important;
-    -webkit-box-shadow: 0 1px 0 0 #005daa !important;
-    -moz-box-shadow: 0 1px 0 0 #005daa !important;
-    box-shadow: 0 1px 0 0 #005daa !important;
-  }
-
-  #pin:focus+ label {
-    color: #005daa;
-    width: 90%;
-  }
-
-  .verify-sec-1 {
-    margin-top: 45px;
-    border: 1px solid #b9b9b9;
-  }
-</style>
 <div class="container center-align verify-sec-1">
   <div class="row">
     <div class="container center-align">
-      <h4>Please enter the verification code sent to</h4>
-      <h4>### - ### - 2562 to confirm</h4>
-      <div class="input-field col s4 offset-s4">
-        <input id="pin" type="password" class="validate center-align">
-        <label style="width: 90%" for="pin">PIN</label>
+      <div class="input-field col s12">
+        <input id="title" class="validate center-align">
+        <label style="width: 90%" for="title">Title</label>
+      </div>
+      <div class="input-field col s12">
+        <textarea id="description" class="materialize-textarea"></textarea>
+        <label for="description">Description</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="description" class="validate center-align">
+        <label style="width: 90%" for="title">Price Range</label>
       </div>
     </div>
-  </div>
-  <div id="verify-sec-2">
-    <button onclick="test()" id="pin_button" class="waves-effect waves-light btn rbc-blue">Verify</button>
   </div>
   <br>
   <br>
 </div>
 <br>
-<div class="row">
-  <div class="container center-align">
-    <h4>or</h4>
-    <br>
-    <h4><a href="#">Resend a verification code</a> to the email linked to this account</h4>
-  </div>
 </div>
-
-<script>
-  var html = $(
-    '<div class="preloader-wrapper small active">\
-    <div class="spinner-layer spinner-green-only">\
-      <div class="circle-clipper left">\
-        <div class="circle"></div>\
-      </div><div class="gap-patch">\
-        <div class="circle"></div>\
-      </div><div class="circle-clipper right">\
-        <div class="circle"></div>\
-      </div>\
-    </div>\
-  </div>"'
-  );
-
-
-  function test() {
-    $("#verify-sec-2").empty();
-    $("#verify-sec-2").append(html);
-    setTimeout(fade, 1750);
-  }
-
-  var fade = function() {
-    var html2 = $('<i style="color: green; font-size: 40px;" class="material-icons">check</i>');
-    $("#verify-sec-2").empty();
-    $("#verify-sec-2").append(html2);
-  }
-</script>
