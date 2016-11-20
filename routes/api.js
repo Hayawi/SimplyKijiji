@@ -5,6 +5,7 @@ var ExifImage = require('exif').ExifImage;
 var helper = require('./functions');
 var gcloud = require('gcloud');
 var path = require("path");
+var pricing = require('../pricing/pricing');
 
 var vision = gcloud.vision({
   projectId: 'simplykijiji-150019',
@@ -49,6 +50,16 @@ router.post('/image/upload', upload.any(), function (req, res, next) {
           res.send(response);
         });
   });
+});
+
+router.get('/file', function(req, res, next) {
+  pricing.getDummyData(function (err, data) {
+      if(err) console.log(err);
+      else {
+        console.log(data)
+        res.send(data);
+      } 
+    });
 });
 
 module.exports = router;
