@@ -15,12 +15,13 @@ app.controller('PhotoUploadController', function($scope, $location, DataService,
     DataService.select_plan(value);
   }
 
-  $scope.imageUploaded = function() {
-    return $scope.fileModel ? true : false;
+  $scope.uploadFile = function(files) {
+    $scope.formData = new FormData();
+    $scope.formData.append("file", files[0]);
   }
 
   $scope.upload = function() {
-    ImageRequest.send($scope.fileModel)
+    ImageRequest.send($scope.formData)
     .success(function(result){
       console.log('File sent');
       console.log(result);

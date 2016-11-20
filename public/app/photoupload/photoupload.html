@@ -7,18 +7,20 @@
 <div class="container repayment-sec-1">
   <h4 class="center-align">Upload a photo of your product to help us identify it!</h4>
   <br/>
-  <div class="row center-align">
-    <div class="file-field input-field">
-      <div class="btn">
-        <span>Choose</span>
-        <input type="file" file-model='fileModel'>
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
+  <form ng-submit="upload()">
+    <div class="row center-align">
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Choose</span>
+          <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" enctype="multipart/form-data" />
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
       </div>
     </div>
-  </div>
-  <div ng-show="imageUploaded()" class="row center-align">
-    <button class='btn' ng-click="upload()">Continue</button>
-  </div>
+    <div class="row center-align">
+      <button class='btn' type="submit">Continue</button>
+    </div>
+  </form>
 </div>

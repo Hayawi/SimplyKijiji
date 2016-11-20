@@ -18,20 +18,20 @@ module.exports.getLocationFromEXIFData = function(image, callback) {
               callback(error, null);
           else {
             exifData = exifData.gps;
-            var gpsLon = exifData.GPSLongitude[0] + "°" + exifData.GPSLongitude[1] + "'" + exifData.GPSLongitude[2] + "\"" + " " + exifData.GPSLongitudeRef; 
-            var gpsLat = exifData.GPSLatitude[0] + "°" + exifData.GPSLatitude[1] + "'" + exifData.GPSLatitude[2] + "\"" + " " + exifData.GPSLatitudeRef; 
-            var input = gpsLat + " " + gpsLon;
-            var parts = input.split(/[^\d\w]+/);
-            var lat = helper.ConvertDMSToDD(parts[0], parts[1], Math.round(parts[2]), parts[4]);
-            var lng = helper.ConvertDMSToDD(parts[5], parts[6], Math.round(parts[7]), parts[9]);
-            
-            lat = Math.round(lat * 1000000) / 1000000;
-            lng = Math.round(lng * 1000000) / 1000000;
-            callback(null, {lat:lat, lng:lng});
-            // geocoder.reverse({lat:lat, lon:lng}, function(err, res) {
-            //     if(err) callback(err);
-            //     callback(null, res);
-            // });
+            if (exifData.GPSLongitude || exifData.GPSLatitude) {
+              var gpsLon = exifData.GPSLongitude[0] + "°" + exifData.GPSLongitude[1] + "'" + exifData.GPSLongitude[2] + "\"" + " " + exifData.GPSLongitudeRef;
+              var gpsLat = exifData.GPSLatitude[0] + "°" + exifData.GPSLatitude[1] + "'" + exifData.GPSLatitude[2] + "\"" + " " + exifData.GPSLatitudeRef;
+              var input = gpsLat + " " + gpsLon;
+              var parts = input.split(/[^\d\w]+/);
+              var lat = helper.ConvertDMSToDD(parts[0], parts[1], Math.round(parts[2]), parts[4]);
+              var lng = helper.ConvertDMSToDD(parts[5], parts[6], Math.round(parts[7]), parts[9]);
+
+              lat = Math.round(lat * 1000000) / 1000000;
+              lng = Math.round(lng * 1000000) / 1000000;
+              callback(null, {lat:lat, lng:lng});
+            } else {
+              callback(null, null);
+            }
           }
       });
 //   } catch (error) {
