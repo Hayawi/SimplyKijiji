@@ -1,4 +1,4 @@
-app.controller('PhotoUploadController', function($scope, $location, DataService, $http) {
+app.controller('PhotoUploadController', function($scope, $location, DataService, $http, ImageRequest) {
   // $scope.data = DataService.get_loan_amount();
   $scope.fileModel = null;
 
@@ -20,6 +20,16 @@ app.controller('PhotoUploadController', function($scope, $location, DataService,
   }
 
   $scope.upload = function() {
-    //$scope.fileModel
+    ImageRequest.send($scope.fileModel)
+    .success(function(result){
+      console.log('File sent');
+      console.log(result);
+    })
+    .error(function(error){
+      console.log('error occurred sending the file');
+    })
+    .finally(function() {
+      $scope.go('/verify', $scope.selected_option);
+    });
   }
 })

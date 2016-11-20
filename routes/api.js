@@ -12,14 +12,13 @@ var vision = gcloud.vision({
 });
 
 var filename = "";
-var d = __dirname + "/../public/uploads/";
+var UPLOAD_DIR = __dirname + "/../public/uploads/";
+
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    console.log("dir name is: ", __dirname);
-    callback(null, __dirname + '/../public/uploads/')
+    callback(null, __dirname + UPLOAD_DIR)
   },
   filename: function (req, file, callback) {
-    //callback(null, Date.now() + '.png') //Appending .png
     filename = file.originalname;
     callback(null, file.originalname);
   }
@@ -27,17 +26,17 @@ var storage = multer.diskStorage({
 
 var upload = multer({
   dest: __dirname + '/../public/uploads/',
-  limits: {fileSize: 3000000, files:1},
+  limits: { fileSize: 3000000, files:1 },
   storage: storage
 });
 
 router.post('/image/upload', upload.any(), function (req, res, next) {
       helper.getLocationFromEXIFData(filename, function(err, location) {
-        if(err) {
+        if (err) {
           console.log(err);
           location = null;
         }
-        vision.detectLabels(d + filename, function(err, labels, apiResponse) {
+        vision.detectLabels(UPLOAD_DIR + filename, function(err, labels, apiResponse) {
           if (err) console.log(err);
           var response = {
             title: 'TITLE',
