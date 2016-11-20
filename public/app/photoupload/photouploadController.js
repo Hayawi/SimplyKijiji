@@ -1,5 +1,6 @@
 app.controller('PhotoUploadController', function($scope, $location, DataService, $http) {
   // $scope.data = DataService.get_loan_amount();
+  $scope.fileModel = null;
 
   $scope.go = function (path, value) {
     $location.path(path);
@@ -14,8 +15,11 @@ app.controller('PhotoUploadController', function($scope, $location, DataService,
     DataService.select_plan(value);
   }
 
+  $scope.imageUploaded = function() {
+    return $scope.fileModel ? true : false;
+  }
 
   $scope.upload = function() {
-    console.log($scope.fileModel);
+    //$scope.fileModel
   }
 })

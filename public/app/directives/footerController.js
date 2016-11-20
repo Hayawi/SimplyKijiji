@@ -1,7 +1,7 @@
 app.controller('FooterController', function ($scope, $location) {
   $scope.isSelected = function () {
     switch ($location.$$path) {
-      case '/form':
+      case '/photoupload':
         $("#page2").prop('checked', true);
         break;
       case '/verify':

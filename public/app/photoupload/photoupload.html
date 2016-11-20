@@ -10,7 +10,7 @@
   <div class="row center-align">
     <div class="file-field input-field">
       <div class="btn">
-        <span>Image file</span>
+        <span>Choose</span>
         <input type="file" file-model='fileModel'>
       </div>
       <div class="file-path-wrapper">
@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  <div class="row center-align">
-    <button type='btn' ng-click='upload()'>Upload</button>
+  <div ng-show="imageUploaded()" class="row center-align">
+    <button class='btn' ng-click='upload()'>Continue</button>
   </div>
 </div>
