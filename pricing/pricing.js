@@ -3,7 +3,7 @@
 const math = require('mathjs');
 const fs = require('fs');
 const path = require('path');
-const fuse = require('fuse.js');
+const Fuse = require('fuse.js');
 
 const json2 = {
 "transactions":[
@@ -51,8 +51,10 @@ function fuzzysearch(keys) {
   var keysLen = keys.length;
   for (var i = 0; i < keysLen; i++) {  
     var matchingEntries = fuzzy.search(keys[i]);
-    results.concat(matchingEntries);
+    //console.log(matchingEntries);
+    results = results.concat(matchingEntries);
   }
+  //console.log(results);
   return results; //outputs array of all postings matching any of the keywords.
 }
 
@@ -76,9 +78,10 @@ function getPriceRange(priceArray) {
 
 function keysToPrices(keys) {
   var matches = fuzzysearch(keys);
-  console.log(matches);
+  //console.log(matches);
   var priceArr = getPriceArray(matches);
   return getPriceRange(priceArr);
 }
 
-console.log(keysToPrices["toyota"]);
+console.log(keysToPrices(["toyota"]));
+
