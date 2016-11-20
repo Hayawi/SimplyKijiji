@@ -1,8 +1,6 @@
 const math = require('mathjs');
 const Fuse = require('fuse.js');
-
 const largeJson = require('./dummydata.json');
-
 
 function fuzzysearch(keys) {
   var options = {
@@ -13,13 +11,14 @@ function fuzzysearch(keys) {
     maxPatternLength: 52,
     keys: [
       "title",
-      "category"
-  ] 
+      "category",
+      "description"
+    ]
   };
   var fuzzy = new Fuse(largeJson["transactions"], options);
   var results = [];
   var keysLen = keys.length;
-  for (var i = 0; i < keysLen; i++) {  
+  for (var i = 0; i < keysLen; i++) {
     var matchingEntries = fuzzy.search(keys[i]);
     //console.log(matchingEntries);
     results = results.concat(matchingEntries);
@@ -44,19 +43,17 @@ function getPriceRange(priceArray) {
   var mean = math.mean(priceArray);
   var std = math.std(priceArray);
   var lower = mean - 0.5 * std;
-  if(lower <= 0) {
+  if (lower <= 0) {
     lower = math.min(priceArray);
   }
   var upper = mean + 0.5 * std;
-  var priceRange = [Math.round(lower * 100)/100, Math.round(upper * 100)/100];
+  var priceRange = [Math.round(lower * 100) / 100, Math.round(upper * 100) / 100];
   return priceRange;
 }
 
-module.exports.keysToPrices = function(keys) {
+module.exports.keysToPrices = function (keys) {
   var matches = fuzzysearch(keys);
   var priceArr = getPriceArray(matches);
   var result = getPriceRange(priceArr);
   return result;
-  //callback(null, result);
 }
-
