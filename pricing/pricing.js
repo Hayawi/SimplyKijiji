@@ -5,33 +5,8 @@ const fs = require('fs');
 const path = require('path');
 const Fuse = require('fuse.js');
 
-const json2 = {
-"transactions":[
-    {"category": "car", 
-     "title": "2010 Toyota RAV4, AWD, 2.5 Eng. Extremely Good Condition",
-     "price": 12900.00,
-     "description": "One owner 2010 Toyota RAV4, fuel efficient 2.5 4cyls engine. AWD, All power group, AC. Extremely clean interior & exterior. No rust or other damages. Free of accidents & paint works. All key & books. Comes with Safety & E-test. Please email me for more information."},
-    {"category": "car", 
-     "title": "2008 Pontiac G5 etest safety must sell!",
-     "price": 2950.00,
-     "description": "I'm selling my 2008 Pontiac G5. Its in great condition inside and out. Runs very smooth. Power window, power locks, cruise control, CD player, 4 new tires! 175,000 km only. This car has a timing chain that never needs to be changed. Great commuter car that's cheap on gas. Selling emission tested and certified. Asking $2950 or best offer."}
-]
-}
+const largeJson = require('./dummydata.json');
 
-//console.log(typeof json2);
- 
-/*
-module.exports.getDummyData = function(callback) {
-  fs.readFile(path.join(__dirname, 'json10.json'), 'utf8', function(err, data){
-    if(err) {
-      callback(err, null);
-    }
-    else {
-      callback(null, data);
-    }
-  });
-}
-*/
 
 function fuzzysearch(keys) {
   var options = {
@@ -46,7 +21,7 @@ function fuzzysearch(keys) {
       "description"
   ] 
   };
-  var fuzzy = new Fuse(json2["transactions"], options);
+  var fuzzy = new Fuse(largeJson["transactions"], options);
   var results = [];
   var keysLen = keys.length;
   for (var i = 0; i < keysLen; i++) {  
