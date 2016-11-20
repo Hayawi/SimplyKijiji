@@ -51,8 +51,12 @@ function getPriceRange(priceArray) {
 }
 
 module.exports.keysToPrices = function (keys) {
+  var result = new Array;
   var matches = fuzzysearch(keys);
   var priceArr = getPriceArray(matches);
-  var result = getPriceRange(priceArr);
+  if(priceArr.length == 0)
+    result = [0, 0];  
+  else
+    var result = getPriceRange(priceArr);
   return result;
 }
