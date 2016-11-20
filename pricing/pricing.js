@@ -1,8 +1,4 @@
-// var JSON = require('JSON');
-// var jsonfile = require('jsonfile');
 const math = require('mathjs');
-const fs = require('fs');
-const path = require('path');
 const Fuse = require('fuse.js');
 
 const largeJson = require('./dummydata.json');
