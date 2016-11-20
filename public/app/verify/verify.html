@@ -25,13 +25,9 @@
         <input id="location" type="text" class="validate" value="{{advertisementData.location.lat}}, {{advertisementData.location.lng}}">
         <label for="location">Location</label>
       </div>
-      <div class="input-field col s6">
-        <input id="minPriceRange" type="text" class="validate" value="{{advertisementData.price_range[0]}}">
-        <label for="minPriceRange">Minimum Price Range</label>
-      </div>
-      <div class="input-field col s6">
-        <input id="maxPriceRange" type="text" class="validate" value="{{advertisementData.price_range[1]}}">
-        <label for="maxPriceRange">Maximum Price Range</label>
+	  <div class="input-field col s6">
+        <input id="minPriceRange" type="text" class="validate" value="{{(advertisementData.price_range[0] + advertisementData.price_range[1])/2}}">
+        <label for="minPriceRange">Selling Price: Estimated Range (${{advertisementData.price_range[0]}} to ${{advertisementData.price_range[1]}})</label>
       </div>
     </div>
   </div>
