@@ -3,6 +3,7 @@
 var math = require('mathjs');
 var fs = require('fs');
 var path = require('path');
+var pricing = require('./pricing.js');
 
 module.exports.getDummyData = function(callback) {
   fs.readFile(path.join(__dirname, 'json10.json'), 'utf8', function(err, data){
@@ -10,22 +11,33 @@ module.exports.getDummyData = function(callback) {
       callback(err, null);
     }
     else {
+      // var arr = new Array;
+      // for(var i = 0; i < data.length; i++) {
+      //    arr.push(data.price);
+      // }
+      data = JSON.parse(data);
+      //var arr = pricing.getPriceArray(data);
       callback(null, data);
     }
   });
 }
 
  
-// function getPriceArray(trxnJson) {
-//   var transations = trxnJson["transactions"];
-//   var prices = [];
-//   var arrayLen = transactions.length;
-//   for (var i = 0; i < arrayLen; i++) {
-//     var price = transactions[i]["price"];
-//     prices[i] = price;
-//   }
-//   return prices;
-// }
+module.exports.getPriceArray = function (data) {
+  var prices = new Array;
+  var arrayLen = data.transactions.length;
+  for (var i = 0; i < arrayLen; i++) {
+    var price = transactions[i]["price"];
+    //prices[i] = price;
+    prices.push(price);
+  }
+  return prices;
+  // var arr = new Array;
+  // for(var i = 0; i < data.transactions.length; i++) {
+  //    arr.push(data.transactions);
+  // }
+  // return data;
+}
 
 // function getPriceRange(priceArray) {
 //   mean = math.mean(priceArray);
