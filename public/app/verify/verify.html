@@ -1,3 +1,9 @@
+<style>
+  .image-border {
+    border: 1px solid #eee;
+  }
+</style>
+
 <div class="row" data-ng-init="initializeChips(); getLocation()">
   <div class="container left-align">
     <h3>Finalize your posting</h3>
@@ -14,8 +20,9 @@
       <textarea id="description" class="materialize-textarea" value="{{advertisementData.description}}"></textarea>
       <label for="description">Description</label>
     </div>
-    <div class="input-field">
-      <div id="categories" class="chips chips-initial"></div>
+    <div class="input-field" id="categories">
+      <br>
+      <div class="chips chips-initial"></div>
       <label for="categories">Categories</label>
     </div>
     <div class="input-field">
@@ -28,13 +35,13 @@
     </div>
   </div>
   <div class="col s4">
-    <img class="materialboxed" width="450" src="{{advertisementData.filepath}}">
+    <img class="materialboxed image-border" width="450" src="{{advertisementData.filepath}}">
   </div>
   <div class="col s1"></div>
 
   <div class="row">
     <div class="container center-align">
-      <button class="btn btn-large" ng-click="go('/submittedPost')">Submit</button>
+      <button class="btn btn-large" ng-click="go('/submittedPost'); postKijiji()">Submit</button>
     </div>
   </div>
   <br>

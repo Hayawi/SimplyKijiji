@@ -15,6 +15,7 @@ dotenv.load({ path: 'env_vars' });
 
 var routes = require('./routes/index');
 var api = require('./routes/api');
+var kijiji = require('./routes/kijiji');
 var photoupload = require('./routes/photoupload');
 
 var app = express();
@@ -37,6 +38,7 @@ app.use('/photoupload', photoupload);
 app.use('/verify', photoupload);
 app.use('/submittedPost', photoupload);
 app.use('/api', api);
+app.use('/postkijiji', kijiji);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

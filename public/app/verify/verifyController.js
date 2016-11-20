@@ -1,13 +1,30 @@
 app.controller('VerifyController', function($scope, $http, $rootScope, DataService) {
   // $scope.data = DataService.get_plan();
 	$scope.locationResults;
+
+	$scope.postKijiji = function() {
+		$scope.postData = {
+            "price": (($rootScope.advertisementData.price_range[0] + $rootScope.advertisementData.price_range[1])/2),
+            "title": $rootScope.advertisementData.title,
+            "description": $rootScope.advertisementData.description
+        }
+
+        $http.post('/postKijiji', $scope.postData)
+        .success(function(response) {
+            console.log(response);
+        })
+        .error(function(reason) {
+            console.error(reason);
+        });
+	}
+
 	$scope.initializeChips = function(){
 		$('#description').val($rootScope.advertisementData.description);
 		$('.chips-initial').material_chip({
 		    data: $rootScope.authData,
 		});
 	}
-	
+
 	$scope.getLocation = function() {
 	$http({
 			method: 'GET',
