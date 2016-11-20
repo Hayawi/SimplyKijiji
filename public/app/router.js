@@ -11,6 +11,10 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
       templateUrl: '/app/verify/verify.html',
       controller: 'VerifyController'
     })
+    .when('/submittedPost', {
+      templateUrl: '/app/submittedpost/submittedpost.html',
+      controller: 'SubmittedPostController'
+    })
     .otherwise({
       templateUrl: '/app/buysell/buysell.html'
     });

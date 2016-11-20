@@ -35,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/photoupload', photoupload);
 app.use('/verify', photoupload);
+app.use('/submittedPost', photoupload);
 app.use('/api', api);
 
 // catch 404 and forward to error handler
