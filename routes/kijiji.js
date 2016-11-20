@@ -13,6 +13,7 @@ function execKijiji(title, description, price) {
 
   const command = kijCommand(title, description, price);
   exec(command, execOptions, (error, stdout, stderr) => {
+    console.log("SENT KIJIJI EMAIL");
   });
 }
 
