@@ -1,4 +1,7 @@
-var Vision = require('@google-cloud/vision');
+var express = require('express');
+var router = express.Router();
+var Vision = require('google-cloud');
+var v = require('./visionAPI');
 
 // By default, the client will authenticate using the service account file
 // specified by the GOOGLE_APPLICATION_CREDENTIALS environment variable and use
@@ -11,7 +14,7 @@ var vision = Vision();
 /**
  * Uses the Vision API to detect labels in the given file.
  */
-function detectLabels (inputFile, callback) {
+module.exports.detectLabels = function(inputFile, callback) {
   // Make a call to the Vision API to detect the labels
   vision.detectLabels(inputFile, { verbose: true }, function (err, labels) {
     if (err) {
@@ -23,12 +26,9 @@ function detectLabels (inputFile, callback) {
 }
 
 // give the input image to get categorized
-function getImageData (inputFile, callback) {
-  detectLabels(inputFile, function (err, labels) {
-    if (err) {
-      return callback(err);
-    }
-
+module.exports.getImageData = function(inputFile, callback) {
+  v.detectLabels(inputFile, function (err, labels) {
+    if (err) { return callback(err); }
     console.log('Found label: ' + labels[0].desc + ' for ' + inputFile);
     callback(null, labels);
   });

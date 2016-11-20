@@ -10,11 +10,12 @@ module.exports.ConvertDMSToDD = function(degrees, minutes, seconds, direction) {
     return dd/10;
 }
 
-module.exports.getLocationFromEXIFData = function(image) {
-  try {
+module.exports.getLocationFromEXIFData = function(image, callback) {
+//   try {
       new ExifImage({ image :  __dirname + '/../public/uploads/' + image }, function (error, exifData) {
           if (error)
-              console.log('Error: '+error.message);
+              //console.log('Error: '+error.message);
+              callback(error, null);
           else {
             exifData = exifData.gps;
             var gpsLon = exifData.GPSLongitude[0] + "°" + exifData.GPSLongitude[1] + "'" + exifData.GPSLongitude[2] + "\"" + " " + exifData.GPSLongitudeRef; 
@@ -26,12 +27,14 @@ module.exports.getLocationFromEXIFData = function(image) {
             
             lat = Math.round(lat * 1000000) / 1000000;
             lng = Math.round(lng * 1000000) / 1000000;
-            console.log(lat + " " + lng);
-            //callback(exifData);
+            callback(null, {lat:lat, lng:lng});
+            // geocoder.reverse({lat:lat, lon:lng}, function(err, res) {
+            //     if(err) callback(err);
+            //     callback(null, res);
+            // });
           }
-              
       });
-  } catch (error) {
-      console.log('Error: ' + error.message);
-  }
+//   } catch (error) {
+//       console.log('Error: ' + error.message);
+//   }
 }

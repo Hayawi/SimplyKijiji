@@ -5,6 +5,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const dotenv = require('dotenv');
+
+
+/**
+ * Load environment variables from .env file, where API keys and passwords are configured.
+ */
+dotenv.load({ path: 'env_vars' });
 
 var routes = require('./routes/index');
 var api = require('./routes/api');
