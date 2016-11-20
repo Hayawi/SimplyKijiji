@@ -1,6 +1,7 @@
-app.controller('PhotoUploadController', function($scope, $location, DataService, $http, ImageRequest) {
+app.controller('PhotoUploadController', function($rootScope, $scope, $location, DataService, $http, ImageRequest) {
   // $scope.data = DataService.get_loan_amount();
   $scope.fileModel = null;
+  $rootScope.advertisementData;
 
   $scope.go = function (path, value) {
     $location.path(path);
@@ -15,13 +16,15 @@ app.controller('PhotoUploadController', function($scope, $location, DataService,
     DataService.select_plan(value);
   }
 
-  $scope.imageUploaded = function() {
-    return $scope.fileModel ? true : false;
+  $scope.uploadFile = function(files) {
+    $scope.formData = new FormData();
+    $scope.formData.append("file", files[0]);
   }
 
   $scope.upload = function() {
-    ImageRequest.send($scope.fileModel)
+    ImageRequest.send($scope.formData)
     .success(function(result){
+	  $rootScope.advertisementData = result;
       console.log('File sent');
       console.log(result);
     })
@@ -29,7 +32,7 @@ app.controller('PhotoUploadController', function($scope, $location, DataService,
       console.log('error occurred sending the file');
     })
     .finally(function() {
-      $scope.go('/verify', $scope.selected_option);
+      $scope.go('/verify', $scope.formData);
     });
   }
 })

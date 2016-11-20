@@ -3,7 +3,7 @@ app.factory("ImageRequest", function($http){
         send : function(image) {
             return $http({
                 method: 'POST',
-                data: { file: image },
+                data: image,
                 headers: {
                   'Content-Type': undefined
                 },

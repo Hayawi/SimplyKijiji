@@ -16,7 +16,7 @@ var UPLOAD_DIR = __dirname + "/../public/uploads/";
 
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, __dirname + UPLOAD_DIR)
+    callback(null, UPLOAD_DIR)
   },
   filename: function (req, file, callback) {
     filename = file.originalname;
@@ -25,7 +25,7 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({
-  dest: __dirname + '/../public/uploads/',
+  dest: UPLOAD_DIR,
   limits: { fileSize: 3000000, files:1 },
   storage: storage
 });
