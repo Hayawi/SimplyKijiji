@@ -1,30 +1,48 @@
-<div class="container center-align verify-sec-1" data-ng-init="initializeChips()">
+<div class="row" data-ng-init="initializeChips(); getLocation()">
+  <div class="container left-align">
+    <h3>Finalize your posting</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col s1"></div>
+  <div class="col s6">
+    <div class="input-field">
+      <input id="title" type="text" class="validate" value="{{advertisementData.title}}">
+      <label for="title">Title</label>
+    </div>
+    <div class="input-field">
+      <textarea id="description" class="materialize-textarea" value="{{advertisementData.description}}"></textarea>
+      <label for="description">Description</label>
+    </div>
+    <div class="input-field">
+      <div id="categories" class="chips chips-initial"></div>
+      <label for="categories">Categories</label>
+    </div>
+    <div class="input-field">
+      <input id="location" type="text" class="validate" value="{{locationResults}}">
+      <label for="location">Location</label>
+    </div>
+    <div class="input-field">
+      <input id="minPriceRange" type="text" class="validate" value="{{(advertisementData.price_range[0] + advertisementData.price_range[1])/2}}">
+      <label for="minPriceRange">Selling Price: Estimated Range (${{advertisementData.price_range[0]}} to ${{advertisementData.price_range[1]}})</label>
+    </div>
+  </div>
+  <div class="col s4">
+    <img class="materialboxed" width="450" src="{{advertisementData.filepath}}">
+  </div>
+  <div class="col s1"></div>
+
   <div class="row">
-    <div class="container left-align">
-      <div>
-        <label style="width: 90%">Title: </label>
-		<input id="title" class="validate center-align" value={{advertisementData.title}}>
-      </div>
-      <div>
-        <label>Description:</label>
-		<textarea id="description" class="">{{advertisementData.description}}</textarea>
-      </div>
-	  <div>Categories:
-		<div class="chips chips-initial"></div>
-	  </div>
-	  <div>Location: {{advertisementData.location}}</div>
-	  <div>Price Range:
-		<span style="display:inline" ng-repeat="priceRange in advertisementData.price_range">
-			{{priceRange}}
-		</span>
-	  </div>	  
-      <div class="input-field col s12">
-        <input id="description" class="validate center-align">
-        <label style="width: 90%" for="title">Price Range</label>
-      </div>
+    <div class="container center-align">
+      <button class="btn btn-large">Submit</button>
     </div>
   </div>
   <br>
   <br>
 </div>
-<br>
+
+<script>
+  $(document).ready(function() {
+    Materialize.updateTextFields();
+  });
+</script>
