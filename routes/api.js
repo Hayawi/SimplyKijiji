@@ -47,16 +47,20 @@ router.post('/image/upload', upload.any(), function(req, res, next) {
                 categorize_func.categorizeItem(labels, function(err, labelscat) {
                     if (err) console.log(err);
                     var catagories = labelscat.concat(labels);
-                    var response = {
-                        title: result.title,
-                        filepath: "/uploads/" + filename,
-                        description: result.description,
-                        catagories,
-                        price_range,
-                        location,
-                    }
-                    console.log(response);
-                    res.send(response);
+                    vision.detectLogos(filename, function(err, logos, apiResponse) {
+                      console.log(logos);
+                        var response = {
+                            title: result.title,
+                            filepath: "/uploads/" + filename,
+                            description: result.description,
+                            catagories,
+                            price_range,
+                            location,
+                        }
+                        console.log(response);
+                        res.send(response);
+                    });
+
                 })
             });
         });
