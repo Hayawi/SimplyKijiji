@@ -8,3 +8,4 @@ deCODE hackathon working to simplify the method of posting ads on Kijiji. Using 
 2. `npm install`
 3. `cd public && npm install && cd ..`
 4. `npm start`
+5. go to http://localhost:3000
